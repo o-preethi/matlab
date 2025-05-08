@@ -5,6 +5,13 @@ function X = fft_16pt(x)
         error('Input vector must be of length 16.');
     end
 
+     n=1:16;
+    subplot(311);
+    stem(n,x);
+    title('input signal');
+    xlabel('discrete time');
+    ylabel('amplitude');
+
     % Bit-reversal permutation
     br_indices = bitrevorder(0:N-1) + 1;
     x = x(br_indices);
@@ -25,4 +32,20 @@ function X = fft_16pt(x)
     end
 
     X = x;
+%we can plot the resultant complex in terms of magnitude and phase
+xm=abs(X);
+xp=angle(X);
+ subplot(312);
+    stem(n,xk);
+    title('magnitude of X(k) signal');
+    xlabel('discrete frequency');
+    ylabel('amplitude');
+
+    subplot(313);
+    stem(n,xp);
+    title('phase of X(k) signal');
+    xlabel('discrete frequency');
+    ylabel('amplitude');
+
+
 end
