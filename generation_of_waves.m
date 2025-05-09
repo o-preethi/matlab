@@ -1,7 +1,7 @@
 fs = 500;          % Sampling frequency
 t = 0:1/fs:1;       % Time 
 f = 5;              % Frequency 
-A = 1.2;            % Amplitude 
+A = 1;            % Amplitude 
 
 % Generation of waveforms
 sinewave = A * sin(2 * pi * f * t);               
