@@ -1,0 +1,40 @@
+%% Example: Downsampling a Signal in Time Domain
+
+% Define parameters
+Fs = 1000;            % Original sampling frequency (Hz)
+T  = 1/Fs;            % Sampling period (seconds)
+t  = 0:T:1;           % Time vector for 1 second
+f0 = 50;              % Frequency of the sine wave (Hz)
+
+% Generate the original signal (a sine wave)
+x = sin(2*pi*f0*t);
+
+% Specify the downsampling factor
+downFactor = 2;
+
+%% Method 1: Downsampling using direct indexing
+% Every downFactor-th sample is kept
+x_down_index = x(1:downFactor:end);
+t_down_index = t(1:downFactor:end);
+
+%% Method 2: Downsampling using MATLAB's built-in function
+% The downsample function is available in the Signal Processing Toolbox.
+x_down_builtin = downsample(x, downFactor);
+t_down_builtin = t(1:downFactor:end);  % Time vector for the downsampled signal
+
+%% Plot the results for comparison
+figure;
+subplot(3,1,1);
+plot(t, x, 'b.-');
+title('Original Signal');
+xlabel('Time (s)'); ylabel('Amplitude');
+
+subplot(3,1,2);
+stem(t_down_index, x_down_index, 'r');
+title('Downsampled Signal using Direct Indexing');
+xlabel('Time (s)'); ylabel('Amplitude');
+
+subplot(3,1,3);
+stem(t_down_builtin, x_down_builtin, 'g');
+title('Downsampled Signal using downsample()');
+xlabel('Time (s)'); ylabel('Amplitude');
