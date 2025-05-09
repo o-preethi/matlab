@@ -1,0 +1,39 @@
+%% Example: Upsampling a Signal in Time Domain
+
+% Define parameters
+Fs = 1000;             % Original sampling frequency (Hz)
+T  = 1/Fs;             % Sampling period
+t  = 0:T:1;            % Time vector
+f0 = 50;               % Frequency of sine wave (Hz)
+
+% Generate original signal
+x = sin(2*pi*f0*t);
+
+% Upsampling factor
+upFactor = 2;
+
+%% Method 1: Manual upsampling (insert zeros)
+x_up_manual = zeros(1, length(x) * upFactor);
+x_up_manual(1:upFactor:end) = x;
+t_up_manual = (0:length(x_up_manual)-1) / (Fs * upFactor);
+
+%% Method 2: Using MATLAB's upsample() function
+x_up_builtin = upsample(x, upFactor);
+t_up_builtin = (0:length(x_up_builtin)-1) / (Fs * upFactor);
+
+%% Plotting
+figure;
+subplot(3,1,1);
+plot(t, x, 'b.-');
+title('Original Signal');
+xlabel('Time (s)'); ylabel('Amplitude');
+
+subplot(3,1,2);
+stem(t_up_manual, x_up_manual, 'r');
+title('Upsampled Signal (Manual)');
+xlabel('Time (s)'); ylabel('Amplitude');
+
+subplot(3,1,3);
+stem(t_up_builtin, x_up_builtin, 'g');
+title('Upsampled Signal (Built-in upsample())');
+xlabel('Time (s)'); ylabel('Amplitude');
