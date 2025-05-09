@@ -1,0 +1,14 @@
+%% Decimation Example in MATLAB
+
+% Original signal
+Fs = 1000;                   % Original sampling frequency (Hz)
+t = 0:1/Fs:1;                % Time vector (1 second)
+x = sin(2*pi*50*t) + 0.5*sin(2*pi*200*t);  % Composite signal (50 Hz + 200 Hz)
+
+% Decimation factor
+M = 4;                       % Downsample by factor of 4
+
+%% Method 1: Manual Decimation (Low-pass Filter + Downsample)
+
+% Step 1: Low-pass filter to remove high-frequency content
+N = 64;
