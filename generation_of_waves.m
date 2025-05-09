@@ -1,4 +1,4 @@
-fs = 500;          % Sampling frequency
+fs = 1000;          % Sampling frequency
 t = 0:1/fs:1;       % Time 
 f = 5;              % Frequency 
 A = 1;            % Amplitude 
